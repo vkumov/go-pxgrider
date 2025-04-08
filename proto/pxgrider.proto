@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package pxgrider_proto;
+
+import "proto/connection.proto";
+import "proto/connection_logs.proto";
+import "proto/connection_messages.proto";
+import "proto/connection_rest.proto";
+import "proto/fqdn.proto";
+
+option go_package = "github.com/vkumov/go-pxgrider/pxgrider_proto";
+
+service PxgriderService {
+  rpc CheckFQDN(CheckFQDNRequest) returns (CheckFQDNResponse) {}
+  rpc GetConnections(GetConnectionsRequest) returns (GetConnectionsResponse) {}
+  rpc GetConnectionsTotal(GetConnectionsTotalRequest)
+      returns (GetConnectionsTotalResponse) {}
+
+  rpc CreateConnection(CreateConnectionRequest)
+      returns (CreateConnectionResponse) {}
+  rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse) {}
+  rpc UpdateConnection(UpdateConnectionRequest)
+      returns (UpdateConnectionResponse) {}
+  rpc DeleteConnection(DeleteConnectionRequest)
+      returns (DeleteConnectionResponse) {}
+  rpc RefreshConnection(RefreshConnectionRequest)
+      returns (RefreshConnectionResponse) {}
+
+  rpc GetAllSubscriptions(GetAllSubscriptionsRequest)
+      returns (GetAllSubscriptionsResponse) {}
+  rpc GetSubscription(GetSubscriptionRequest)
+      returns (GetSubscriptionResponse) {}
+  rpc SubscribeConnection(SubscribeConnectionRequest)
+      returns (SubscribeConnectionResponse) {}
+  rpc UnsubscribeConnection(UnsubscribeConnectionRequest)
+      returns (UnsubscribeConnectionResponse) {}
+
+  rpc GetConnectionMessages(GetConnectionMessagesRequest)
+      returns (GetConnectionMessagesResponse) {}
+  rpc MarkConnectionMessagesAsRead(MarkConnectionMessagesAsReadRequest)
+      returns (MarkConnectionMessagesAsReadResponse) {}
+  rpc DeleteConnectionMessages(DeleteConnectionMessagesRequest)
+      returns (DeleteConnectionMessagesResponse) {}
+
+  rpc GetConnectionLogs(GetConnectionLogsRequest)
+      returns (GetConnectionLogsResponse) {}
+  rpc DeleteConnectionLogs(DeleteConnectionLogsRequest)
+      returns (DeleteConnectionLogsResponse) {}
+
+  rpc GetConnectionServices(GetConnectionServicesRequest)
+      returns (GetConnectionServicesResponse) {}
+  rpc GetConnectionService(GetConnectionServiceRequest)
+      returns (GetConnectionServiceResponse) {}
+
+  rpc GetServiceMethods(GetServiceMethodsRequest)
+      returns (GetServiceMethodsResponse) {}
+  rpc CallServiceMethod(CallServiceMethodRequest)
+      returns (CallServiceMethodResponse) {}
+  rpc ServiceLookup(ServiceLookupRequest) returns (ServiceLookupResponse) {}
+  rpc ServiceUpdateSecrets(ServiceUpdateSecretsRequest)
+      returns (ServiceUpdateSecretsResponse) {}
+  rpc ServiceCheckNodes(ServiceCheckNodesRequest)
+      returns (ServiceCheckNodesResponse) {}
+
+  rpc GetConnectionTopics(GetConnectionTopicsRequest)
+      returns (GetConnectionTopicsResponse) {}
+  rpc GetServiceTopics(GetServiceTopicsRequest)
+      returns (GetServiceTopicsResponse) {}
+
+  rpc RefreshAccountState(RefreshAccountStateRequest)
+      returns (RefreshAccountStateResponse) {}
+}

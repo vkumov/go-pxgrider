@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package pxgrider_proto;
+
+option go_package = "github.com/vkumov/go-pxgrider/pxgrider_proto";
+
+message DNS {
+  string ip = 1;
+  uint32 port = 2;
+}
+
+enum FamilyPreference {
+  FamilyPreference_IPv4 = 0;
+  FamilyPreference_IPv6 = 1;
+  FamilyPreference_IPv4AndIPv6 = 2;
+  FamilyPreference_IPv6AndIPv4 = 3;
+}
+
+message CheckFQDNRequest {
+  string fqdn = 1;
+  DNS dns = 2;
+  FamilyPreference family_preference = 3;
+}
+
+enum Family {
+  INET_IPv4 = 0;
+  INET_IPv6 = 1;
+}
+
+message IP {
+  string ip = 1;
+  Family family = 2;
+}
+
+message CheckFQDNResponse {
+  bool is_valid = 1;
+  IP candidate = 2;
+  repeated IP ips = 3;
+  string error = 4;
+}

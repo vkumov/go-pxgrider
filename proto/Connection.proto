@@ -1,0 +1,140 @@
+syntax = "proto3";
+
+package pxgrider_proto;
+
+import "proto/user.proto";
+import "proto/fqdn.proto";
+import "proto/sub.proto";
+import "proto/credentials.proto";
+import "proto/node.proto";
+import "proto/nullables.proto";
+
+option go_package = "github.com/vkumov/go-pxgrider/pxgrider_proto";
+
+message TopicMap { map<string, Subscription> subscriptions = 1; }
+
+message DNSDetails {
+  DNS dns = 1;
+  FamilyPreference strategy = 3;
+}
+
+message Connection {
+  string id = 1;
+  string friendly_name = 2;
+  repeated Node nodes = 3;
+  Credentials credentials = 4;
+  string state = 5;
+  string description = 6;
+  string client_name = 7;
+  User owner = 8;
+  DNSDetails dns_details = 9;
+}
+
+message GetConnectionsRequest { User user = 1; }
+
+message GetConnectionsResponse { repeated Connection connections = 1; }
+
+message GetConnectionsTotalRequest { User user = 1; }
+
+message GetConnectionsTotalResponse { int64 total = 1; }
+
+message CreateConnectionRequest {
+  User user = 1;
+  string friendly_name = 2;
+  repeated Node nodes = 3;
+  Credentials credentials = 4;
+  string description = 5;
+  string client_name = 6;
+  DNSDetails dns_details = 7;
+  bool insecure_tls = 8;
+  repeated string ca_certificates = 9;
+}
+
+message CreateConnectionResponse { Connection connection = 1; }
+
+message GetConnectionRequest {
+  User user = 1;
+  string id = 2;
+}
+
+message GetConnectionResponse { Connection connection = 1; }
+
+message UpdateConnectionRequest {
+  User user = 1;
+  string id = 2;
+  NullableString friendly_name = 3;
+  NullableNodeList nodes = 4;
+  NullableCredentials credentials = 5;
+  NullableString description = 7;
+  NullableDNS dns = 8;
+  NullableFamilyPreference dns_strategy = 9;
+  NullableString client_name = 10;
+  NullableString owner = 11;
+  NullableBool insecure_tls = 12;
+  NullableStringList ca = 13;
+}
+
+message UpdateConnectionResponse {}
+
+message DeleteConnectionRequest {
+  User user = 1;
+  string id = 2;
+}
+
+message DeleteConnectionResponse {}
+
+message RefreshConnectionRequest { User user = 1; }
+
+message RefreshConnectionResponse {}
+
+message SubscribeConnectionRequest {
+  User user = 1;
+  string connection_id = 2;
+  string service = 3;
+  string topic = 4;
+}
+
+message SubscribeConnectionResponse { Subscription subscription = 1; }
+
+message GetSubscriptionRequest {
+  User user = 1;
+  string connection_id = 2;
+  string service = 3;
+  string topic = 4;
+}
+
+message GetSubscriptionResponse { Subscription subscription = 1; }
+
+message UnsubscribeConnectionRequest {
+  User user = 1;
+  string connection_id = 2;
+  string service = 3;
+  string topic = 4;
+}
+
+message UnsubscribeConnectionResponse {}
+
+message GetAllSubscriptionsRequest {
+  User user = 1;
+  string connection_id = 2;
+  string service = 3;
+}
+
+message GetAllSubscriptionsResponse { repeated Subscription subscriptions = 1; }
+
+message TopicsSlice { repeated string topics = 2; }
+
+message GetServiceTopicsRequest {
+  User user = 1;
+  string connection_id = 2;
+  string service_name = 3;
+}
+
+message GetServiceTopicsResponse { TopicsSlice topics = 1; }
+
+message GetConnectionTopicsRequest {
+  User user = 1;
+  string connection_id = 2;
+}
+
+message GetConnectionTopicsResponse { map<string, TopicsSlice> topics = 1; }

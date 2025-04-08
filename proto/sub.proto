@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package pxgrider_proto;
+
+option go_package = "github.com/vkumov/go-pxgrider/pxgrider_proto";
+
+message Subscription {
+  string pubsub = 1;
+  string destination = 2;
+  bool connected = 3;
+  repeated string nodes = 4;
+  string service = 5;
+  string topic = 6;
+}

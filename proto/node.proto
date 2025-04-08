@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package pxgrider_proto;
+
+option go_package = "github.com/vkumov/go-pxgrider/pxgrider_proto";
+
+message Node {
+  string fqdn = 1;
+  uint32 control_port = 2;
+}

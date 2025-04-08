@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package pxgrider_proto;
+
+import "google/protobuf/struct.proto";
+import "proto/credentials.proto";
+import "proto/fqdn.proto";
+import "proto/node.proto";
+
+option go_package = "github.com/vkumov/go-pxgrider/pxgrider_proto";
+
+message NullableString {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    string Value = 2;
+  }
+}
+
+message NullableBool {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    bool value = 2;
+  }
+}
+
+message StringList { repeated string strings = 1; }
+
+message NullableStringList {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    StringList value = 2;
+  }
+}
+
+message NullableNode {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    Node value = 2;
+  }
+}
+
+message NodeList { repeated Node nodes = 1; }
+
+message NullableNodeList {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    NodeList value = 2;
+  }
+}
+
+message NullableCredentials {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    Credentials value = 2;
+  }
+}
+
+message NullableFamilyPreference {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    FamilyPreference value = 2;
+  }
+}
+
+message NullableDNS {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    DNS value = 2;
+  }
+}

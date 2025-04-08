@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package pxgrider_proto;
+
+option go_package = "github.com/vkumov/go-pxgrider/pxgrider_proto";
+
+message CallParam {
+  string name = 1;
+  string type = 2;
+  string value = 3;
+}
+
+message Call {
+  string call = 1;
+  string wiki = 2;
+  repeated CallParam params = 3;
+}
+
+message ServiceNode {
+  string name = 1;
+  string node_name = 2;
+  map<string, string> properties = 3;
+}
+
+message Service { repeated ServiceNode nodes = 1; }

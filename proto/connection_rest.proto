@@ -1,0 +1,104 @@
+syntax = "proto3";
+
+package pxgrider_proto;
+
+import "proto/user.proto";
+import "proto/service.proto";
+
+option go_package = "github.com/vkumov/go-pxgrider/pxgrider_proto";
+
+message Param {
+  string name = 1;
+  string schema = 2;
+}
+
+message ParamValue {
+  string name = 1;
+  string json_value = 2;
+}
+
+message Method {
+  string name = 1;
+  repeated Param params = 2;
+  string description = 3;
+}
+
+message Request {
+  string method = 1;
+  repeated ParamValue params = 2;
+}
+
+message ServiceNameWithFriendlyName {
+  string service_name = 1;
+  string friendly_name = 2;
+}
+
+message GetConnectionServicesRequest {
+  User user = 1;
+  string connection_id = 2;
+}
+
+message GetConnectionServicesResponse {
+  repeated ServiceNameWithFriendlyName services = 1;
+}
+
+message GetConnectionServiceRequest {
+  User user = 1;
+  string connection_id = 2;
+  string service_name = 3;
+}
+
+message GetConnectionServiceResponse { Service service = 1; }
+
+message GetServiceMethodsRequest {
+  User user = 1;
+  string connection_id = 2;
+  string service_name = 3;
+}
+
+message GetServiceMethodsResponse { repeated Method methods = 1; }
+
+message CallServiceMethodRequest {
+  User user = 1;
+  string connection_id = 2;
+  string service_name = 3;
+  string method_name = 4;
+  repeated ParamValue params = 5;
+  string node = 6;
+}
+
+message CallServiceMethodResponse { string json_response = 1; }
+
+message RefreshAccountStateRequest {
+  User user = 1;
+  string connection_id = 2;
+}
+
+message RefreshAccountStateResponse {
+  string state = 1;
+  string version = 2;
+}
+
+message ServiceLookupRequest {
+  User user = 1;
+  string connection_id = 2;
+  string service_name = 3;
+}
+
+message ServiceLookupResponse { Service service = 1; }
+
+message ServiceUpdateSecretsRequest {
+  User user = 1;
+  string connection_id = 2;
+  string service_name = 3;
+}
+
+message ServiceUpdateSecretsResponse {}
+
+message ServiceCheckNodesRequest {
+  User user = 1;
+  string connection_id = 2;
+  string service_name = 3;
+}
+
+message ServiceCheckNodesResponse {}

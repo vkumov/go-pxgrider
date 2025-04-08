@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  pxgrider:
+    image: pxgrider
+    ports:
+      - "50051:50051"
+    volumes:
+      - ../config.local.yml:/app/config.yml
+    command: ["/app/pxgrider", "--config", "/app/config.yml"]

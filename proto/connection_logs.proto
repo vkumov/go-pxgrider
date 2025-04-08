@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package pxgrider_proto;
+
+import "google/protobuf/timestamp.proto";
+import "proto/user.proto";
+
+option go_package = "github.com/vkumov/go-pxgrider/pxgrider_proto";
+
+message ConnectionLog {
+  int64 id = 1;
+  string client = 2;
+  string level = 3;
+  google.protobuf.Timestamp timestamp = 4;
+  string message = 5;
+  string label = 6;
+}
+
+message GetConnectionLogsRequest {
+  User user = 1;
+  string connection_id = 2;
+  int64 limit = 3;
+  int64 offset = 4;
+}
+
+message GetConnectionLogsResponse {
+  repeated ConnectionLog connection_logs = 1;
+  int64 total = 2;
+  int64 limit = 3;
+  int64 offset = 4;
+}
+
+message LogIDs { repeated int64 ids = 1; }
+
+message DeleteConnectionLogsRequest {
+  User user = 1;
+  string connection_id = 2;
+  oneof what {
+    LogIDs log_ids = 3;
+    bool all = 4;
+  }
+}
+
+message DeleteConnectionLogsResponse { int64 deleted = 1; }
