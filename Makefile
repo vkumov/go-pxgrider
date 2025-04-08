@@ -36,7 +36,7 @@ build:
 
 release-proto:
 	git tag -a pkg/v$(VERSION) -m "Release proto v$(VERSION)"
-	git push origin master pkg/v$(VERSION)
+	git push origin main pkg/v$(VERSION)
 	go get github.com/vkumov/go-pxgrider/pkg@v$(VERSION)
 
 dev:

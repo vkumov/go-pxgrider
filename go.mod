@@ -11,12 +11,12 @@ require (
 	github.com/rs/zerolog v1.34.0
 	github.com/spf13/viper v1.20.1
 	github.com/vkumov/go-pxgrid v0.13.0
+	github.com/vkumov/go-pxgrider/pkg v1.8.0
 	github.com/volatiletech/null/v8 v8.1.2
 	github.com/volatiletech/sqlboiler/v4 v4.18.0
 	github.com/volatiletech/strmangle v0.0.8
 	google.golang.org/grpc v1.71.1
 	google.golang.org/protobuf v1.36.6
-	github.com/vkumov/go-pxgrider/pkg v1.7.0
 )
 
 require (
@@ -38,10 +38,10 @@ require (
 	github.com/volatiletech/inflect v0.0.1 // indirect
 	github.com/volatiletech/randomize v0.0.1 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/net v0.34.0 // indirect
-	golang.org/x/sys v0.29.0 // indirect
-	golang.org/x/text v0.21.0 // indirect
+	golang.org/x/net v0.39.0 // indirect
+	golang.org/x/sys v0.32.0 // indirect
+	golang.org/x/text v0.24.0 // indirect
 	golang.org/x/xerrors v0.0.0-20240903120638-7835f813f4da // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20250115164207-1a7da9e5054f // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250407143221-ac9807e6c755 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
